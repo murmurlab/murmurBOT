@@ -1,0 +1,17 @@
+{
+  "name": "termux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Dosya.js",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "request-promise-native": "^1.0.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
