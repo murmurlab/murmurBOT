@@ -1,17 +1,25 @@
 {
-  "name": "termux",
+  "name": "murmurbot",
   "version": "1.0.0",
-  "description": "",
-  "main": "Dosya.js",
+  "description": "Bot",
+  "main": "server.js",
   "dependencies": {
-    "discord.js": "^12.5.1",
-    "request-promise-native": "^1.0.9"
+    "canvas": "^2.7.0",
+    "discord.js": "^12.5.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/murmurLAB/murmurBOT.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/murmurLAB/murmurBOT/issues"
+  },
+  "homepage": "https://github.com/murmurLAB/murmurBOT#readme"
 }

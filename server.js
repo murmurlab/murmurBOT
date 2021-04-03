@@ -96,13 +96,13 @@ client.on("message",(msg)=>{
   const ch = msg.channel
   //msg.channel.send(command)
   //msg.channel.send(args)
-  const commands = fs.readdirSync('./dir1/commands/')
-  const chk = fs.readdirSync('./dir1/commands/ch')
+  const commands = fs.readdirSync('.\\dir1\\commands\\')
+  const chk = fs.readdirSync('.\\dir1\\commands\\ch')
       console.log(commands,chk)
       console.log(command)
       const name = chk.find(n => n==command+'.js')
       if(name){
-        const cmd = require(`./commands/ch/${name}`)
+        const cmd = require(`.\\dir1\\commands\\ch\\${name}`)
         if(!cmd.execute)return ch.send('empty command file')
         cmd.execute(ch,msg,args,users,lobies,Discord,client,relogin,dmme,chch)
       }else{
@@ -138,4 +138,4 @@ client.users.fetch('431079005941137418').then((thisuser)=>dmme=thisuser)
 chch = client.channels.cache.get('692070158281212019')  
 }
 
-client.login(config.tokens.murmurbot)
+client.login(config.tokens.lokums)
