@@ -113,7 +113,40 @@ ${ul[i][1][2]}
           if(!users[msg.author.id])return ch.send(`you use before crelob`)
           if(lobies[users[msg.author.id].lobiname].maps[args[2]])return ch.send(`you already have a map this name`)
           ch.send(`creating at ${msg.author.id}`)
-          lobies[users[msg.author.id].lobiname].maps[args[2]]=
+
+          cremap=(x,y)=>{
+            map=[]
+            for(let yf=0;yf<y;yf++){
+                map[yf]=[]
+              for(let xf=0;xf<x;xf++){
+                map[yf].push([0,false])
+              }
+        
+            }
+            map.push(
+                //colors
+                {
+                    
+                },
+                //info
+                {
+                  colours:0,
+                  coloursq:{
+                    
+                  },
+                  zone:{
+                    xmin:0,
+                    xmax:10,
+                    ymin:0,
+                    ymax:10
+                  }
+                }
+            )
+            return map
+          } 
+
+          lobies[users[msg.author.id].lobiname].maps[args[2]]=cremap(10,10)
+          /*
           [
             //0
             [
@@ -173,7 +206,7 @@ ${ul[i][1][2]}
               }
             }
           ]
-          
+          */
           for(let i=3,a=0;i<args.length;i++,a++){
             
             lobies[users[msg.author.id].lobiname].maps[args[2]][10][args[i]]=[]
@@ -238,10 +271,11 @@ ${ul[i][1][2]}
           break;
           case "randomize":
           if(lobies[users[msg.author.id].lobiname].maps[args[2]][11].colours<args[4])return ch.send(`your maps dont have ${args[4]} color`)
-          
+          //renk sayısından az "renk konumu koordinat randomu" seçmememek için
           
           
           let b=[]
+          //args[4] ün gereği kaç kişi oynuyacaksa okadar random seçmek için 
           for(let i=0,a;i<args[4];i++){
             a = [Math.floor(Math.random()*10)+1,Math.floor(Math.random()*10)+1]
             
@@ -251,40 +285,44 @@ ${ul[i][1][2]}
           for(let i=0;i<b.length;i++){
             lobies[users[msg.author.id].lobiname].maps[args[2]][10][lobies[users[msg.author.id].lobiname].maps[args[2]][11].coloursq[i]].push(b[i])
           }
-            const cxxx = 200
-    const cyyy = 200
-    const blokxy= 20
-    const canvas = new Canvas.createCanvas(cxxx,cyyy)
-    const ctx = canvas.getContext("2d")
     
+
+    
+          const blokxy= 20
+          let canvas,ctx
+
     function ciz(a,b,c){
+      const cxxx = a
+      const cyyy = b
+      canvas = new Canvas.createCanvas(cxxx,cyyy)
+      ctx = canvas.getContext("2d")
       ctx.beginPath();
       ctx.fillStyle = "white"
-      ctx.fillRect(0,0,200,200)
+      ctx.fillRect(0,0,a,b)
       
       ctx.fill()
       console.log(a,b,c)
-      for(let c2=0;c2<(b*c);c2+=c){
-        for(let c1=0;c1<(a*c);c1+=c){
+      for(let c2=0;c2<a;c2+=1){
+        for(let c1=0;c1<b;c1+=1){
           ctx.beginPath();
           ctx.lineWidth = "1"
           ctx.strokeStyle = "red";
-          ctx.strokeRect(c1, c2, c, c);
-          console.log(c2,c1)
+          ctx.strokeRect(c1, c2, 1, 1);
+          //console.log(c2,c1)
         }
       }
     }
-    ciz(10,10,blokxy)
+    ciz(lobies[users[msg.author.id].lobiname].maps[args[2]].length-2,lobies[users[msg.author.id].lobiname].maps[args[2]][0].length,blokxy)
     let attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
     ch.send("sa", attachment)
             function al(x,y,col){
               ctx.beginPath();
               ctx.lineWidth = "1"
               ctx.strokeStyle = col;
-              ctx.strokeRect(x, y, blokxy, blokxy);
+              ctx.strokeRect(x, y, 1, 1);
             }
     
-            al(40,60,"blue")
+            al(3,3,"blue")
             attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
             ch.send("sa", attachment)
             function sec1(){
@@ -353,10 +391,19 @@ ${ul[i][1][2]}
         
         break;
         case "c":
+        let code=""
+        for(let i=2;i<args.length;i++){
+          code+=args[i]+" "
+        }
+        console.log(code);
+        let ee="hata yok"
+        try{ch.send(`\`\`\`json
+${JSON.stringify(eval(code))}
+\`\`\``)}catch(e){if (e) {
+          ee=e
+        }else{ee="hata yok"}}
         ch.send(`
-        \`\`\`json
-        ${JSON.stringify(eval(args[2]))}
-        \`\`\`
+        \`\`\`${ee}\`\`\`
         `)
         break;
         
