@@ -154,6 +154,8 @@ ${ul[i][1][2]}
         break;
         case "cm":
         //ch.send(`samet monopoly si yapmayı unutma`)
+        //amiral battı
+        //samet soilders oyunu kaynar kazanlı olan 
           if(args[2]==undefined)return ch.send(`specify map name => cm mapname`)
           if(args.length<5)return ch.send(`specify map color => cm mapname color1 color2 ...`)
           if(!users[msg.author.id])return ch.send(`you use before crelob`)
@@ -393,7 +395,7 @@ ${ul[i][1][2]}
                 let reng = selmap().up[selmap().down.coloursq[sira]]
                 console.log("reng    ",reng);
                 //kişi başı 11 kare diye...
-                for(let finish=0;finish<11;finish++){
+                for(let finish=0;finish<50;/*finish++*/){
                   //secik: rengin sahip oldupu karelerin rasgele birisinin koordinatlarını seçer
                   let secik=reng[Math.floor(Math.random()*reng.length)]
                   
@@ -402,20 +404,39 @@ ${ul[i][1][2]}
                   //console.log(koords)
 
                   if (((koords[secik[0]+1][secik[1]])&&(koords[secik[0]+1][secik[1]][1]!==true))||((koords[secik[0]-1][secik[1]])&&(koords[secik[0]-1][secik[1]][1]!==true))||((koords[secik[0]][secik[1]+1])&&(koords[secik[0]][secik[1]+1][1]!==true))||((koords[secik[0]][secik[1]-1])&&(koords[secik[0]][secik[1]-1][1]!==true))) {
-                    lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+][]
-
+                    let morp = Math.round(Math.random())*2-1
+                    let xory = Math.round(Math.random()*1)
+                    if (xory==1) {
+                      if (lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+morp][secik[1]]&&lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+morp][secik[1]][1]==false) {
+                        lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+morp][secik[1]][1]==true
+                        lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][selmap().down.coloursq[sira]].push([secik[0]+morp,secik[1]])
+                        finish++
+                      }
+                    }else{
+                      if (lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp]&&lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp][1]==false) {
+                        lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp][1]==true
+                        lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][selmap().down.coloursq[sira]].push([secik[0],secik[1]+morp])
+                        finish++
+                      }
+                    }
                   }
-                  console.log(koords[secik[0]+1][secik[1]])
-                  console.log(koords[secik[0]-1][secik[1]])
-                  console.log(koords[secik[0]][secik[1]+1])
-                  console.log(koords[secik[0]][secik[1]-1])
                 }
               }
+              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]]);
+              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].r);
+              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].g);
+              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-1]);
             }
             function sec2(){
-              
+              lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].r.forEach(e=>{
+                al(e[0],e[1],"red")
+              })
+              lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].g.forEach(e=>{
+                al(e[0],e[1],"green")
+              })
             }
             sec1()
+            sec2()
             let secili
             attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
             ch.send("sa", attachment)
