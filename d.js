@@ -1,284 +1,79 @@
-ob={
-  mapsis:[
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  [
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ],
-    [ 0, false ], [ 0, false ]
-  ],
-  { r: [], g: [], b: [], a: [] },
-  {
-    colours: 4,
-    coloursq: { '0': 'r', '1': 'g', '2': 'b', '3': 'a' },
-    zone: { xmin: 0, xmax: 20, ymin: 0, ymax: 20 }
-  }
-]}
+const puppeteer = require('puppeteer');
 
-function cagr(params) {
-  let i=[]
-  let yet=``
-function txt(o){
-  i.push("-")
-  Object.keys(o).forEach(k1=>{
-    yet+=`${i.join("")}${k1}
-`
-    if (o[k1].constructor==Object) {
-      txt(o[k1])
-    }else{
-      if (o[k1].constructor==Array) {
-        txt(o[k1])
-      }else{
-        yet+=`${i.join("")}${o[k1]}
-` 
-      }
-    }
-  })
+
+
+(async () => {
+
+  const browser = await puppeteer.launch({
+    headless: false
+  });
+  const page0 = await browser.newPage()
+
+  async function spawn(){
+    await page0.goto('https://starblast.io',{waitUntil: 'load', timeout: 0});
+
+    await page0.evaluate(e=>{
+      localStorage.setItem("ECPKey","1de11-8ab9b")
+      localStorage.setItem("ECPVerified","yes")
+    })
+
+    await page0.goto('https://starblast.io/#450',{waitUntil: 'load', timeout: 0});
+    await page0.waitForSelector('#play')
+    await page0.click("#play")
+
+      setTimeout(()=>{
+        page0.mouse.click(213, 200)
+      },20000)
   
-  i.shift(1)
-}
-txt(params)
-return yet
-}
+  }
 
 
-textin=txt(ob)
 
-`
-mapsis
--
 
-`
+
+  /* const browser = await puppeteer.launch({
+    headless: false
+  }); */
+  const page = await browser.newPage();
+  await page.goto('https://starblast.io',{waitUntil: 'load', timeout: 0});
+  
+  await page.evaluate(e=>{
+    localStorage.setItem("ECPKey","1de11-8ab9b")
+    localStorage.setItem("ECPVerified","yes")
+  })
+
+  await page.goto('https://starblast.io/#450',{waitUntil: 'load', timeout: 0});
+  
+  await page.waitForSelector("#play")
+  await page.click("#play")
+  
+  console.log("clicked play");
+
+  setTimeout(() => {
+    page.mouse.click(213, 200)
+    console.log("girdi oyuna")
+  }, 10000);
+
+    
+  as = function gonder(x,y){
+    page0.mouse.click(x,y)
+  }
+
+  console.log("gonder declared");
+  
+  await page.evaluate((gecir)=>{
+    console.log(gecir);
+    document.getElementById("canvaswrapper").addEventListener("mousedown",(e)=>{
+    console.log(e.clientY);
+    xek=e.clientX
+    yek=e.clientY
+      })
+  },as)
+  
+  
+
+
+  spawn()
+  //https://starblast.io/#8287@206.189.197.152:3034
+  //await browser.close();
+})();

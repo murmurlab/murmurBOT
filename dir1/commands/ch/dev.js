@@ -1,6 +1,6 @@
 const ext = require('../ext/ext.js')
 const Canvas = require('canvas')
-module.exports = { 
+module.exports = {
   name: 'help',   
   description: 'helping',   
   execute(ch,msg,args,users,lobies,Discord) {
@@ -42,10 +42,12 @@ module.exports = {
           users[lobies[args[2]]['owner']]['lobi']=0
           users[lobies[args[2]]['owner']]['lobiname']=undefined
           delete lobies[args[2]]
-          
+          /*asdsadssadasdasdasdasdasdasdasdas
+          dsalşad lasdklas d asdşl kadsl 
+          */
           ch.send(`deleted ${lobies[args[2]]} named loby`)
         break;
-        case "users":
+        case "users":{
         
         let ul= []
         Object.keys(users).forEach((k,i)=>{
@@ -103,7 +105,8 @@ ${ul[i][1][2]}
 
         ch.send({embed:e})
         break;
-        case "lobies":
+ }
+        case "lobies":{
         let l=[]
         let t=``
         Object.keys(lobies).forEach((k,i)=>{
@@ -152,22 +155,23 @@ ${ul[i][1][2]}
           )
         ch.send({embed:e2})
         break;
-        case "cm":
+        }
+        case "cm":{
         //ch.send(`samet monopoly si yapmayı unutma`)
         //amiral battı
-        //samet soilders oyunu kaynar kazanlı olan 
+        //samet solitare oyunu kaynar kazanlı olan 
           if(args[2]==undefined)return ch.send(`specify map name => cm mapname`)
           if(args.length<5)return ch.send(`specify map color => cm mapname color1 color2 ...`)
           if(!users[msg.author.id])return ch.send(`you use before crelob`)
           if(lobies[users[msg.author.id].lobiname].maps[args[2]])return ch.send(`you already have a map this name`)
           ch.send(`creating at ${msg.author.id}`)
 
-          cremap=(x,y)=>{
-            map=[]
+          let cremap=(x,y)=>{
+            let map=[]
             for(let yf=0;yf<y;yf++){
                 map[yf]=[]
               for(let xf=0;xf<x;xf++){
-                map[yf].push([0,false])
+                map[yf].push([0,false,false])
               }
         
             }
@@ -195,6 +199,9 @@ ${ul[i][1][2]}
               map[y][args[i]]=[]
               map[y+1].colours++
               map[y+1].coloursq[a]=args[i]
+            }
+            for(let i=3;i<args.length;i++){
+              map[y]["border"+args[i]]=[]
             }
             return map
           }
@@ -266,6 +273,7 @@ ${ul[i][1][2]}
           console.log(lobies[users[msg.author.id].lobiname].maps[args[2]])
           
         break;
+        }
         case "login":
         if(!users[msg.author.id]){
           
@@ -318,8 +326,8 @@ ${ul[i][1][2]}
           case "auto":
           
           break;
-          case "randomize":
-            function selmap(){
+          case "randomize":{
+            let selmap = function selmap(){
               let mapin =  lobies[users[msg.author.id].lobiname].maps[args[2]],
               renkler=mapin[mapin.length-2],
               bilgiler=mapin[mapin.length-1]
@@ -345,29 +353,29 @@ ${ul[i][1][2]}
             }
           console.log(b)
           for(let i=0;i<b.length;i++){  
-            lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-1].coloursq[i]].push(b[i])
-            
+            selmap().up[selmap().down.coloursq[i]].push(b[i])
+            selmap().map[b[i][0]][b[i][1]][2]=true
+            selmap().up["border"+selmap().down.coloursq[i]].push(b[i])
           }
-          console.log(lobies.lobik.maps.map[20]);
 
          
 
           const blokxy= 20
           let canvas,ctx
 
-    function ciz(a,b,c){
-      const cxxx = a*c
-      const cyyy = b*c
+    let ciz = function ciz(a,b,c){
+      const cxxx = (a*c)+blokxy
+      const cyyy = (b*c)+blokxy
       canvas = new Canvas.createCanvas(cxxx,cyyy)
       ctx = canvas.getContext("2d")
       ctx.beginPath();
       ctx.fillStyle = "white"
-      ctx.fillRect(0,0,a*c,b*c)
+      ctx.fillRect(0,0,cxxx,cyyy)
       
       ctx.fill()
       console.log(a,b,c)
-      for(let c2=0;c2<a*c;c2+=c){
-        for(let c1=0;c1<b*c;c1+=c){
+      for(let c2=0;c2<(a*c)+blokxy;c2+=c){
+        for(let c1=0;c1<(b*c)+blokxy;c1+=c){
           ctx.beginPath();
           ctx.lineWidth = "1"
           ctx.strokeStyle = "red";
@@ -375,11 +383,20 @@ ${ul[i][1][2]}
           //console.log(c2,c1)
         }
       }
+      ctx.beginPath()
+      ctx.font = ""+15+"px Arial";
+      ctx.fillStyle = "black";
+      for(let y=0;y<selmap().map.length-2;y++){
+        ctx.fillText(y , cxxx-20 ,(y*blokxy)+20 );
+      }
+      for(let x=0;x<selmap().map[0].length;x++){
+        ctx.fillText(x , x*blokxy ,cyyy );
+      }
     }
     ciz(selmap().map.length-2,selmap().map[0].length,blokxy)
     let attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
     ch.send("sa", attachment)
-            function al(x,y,col){
+            let al = function al(x,y,col){
               let x1=x*20,y1=y*20
               ctx.beginPath();
               ctx.lineWidth = "7"
@@ -390,7 +407,7 @@ ${ul[i][1][2]}
             al(3,3,"blue")
             attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
             ch.send("sa", attachment)
-            function sec1(){
+            let sec1 = function sec1(){
               for(let sira=0;selmap().down.coloursq[sira]!==undefined;sira++){
                 let reng = selmap().up[selmap().down.coloursq[sira]]
                 console.log("reng    ",reng);
@@ -399,35 +416,74 @@ ${ul[i][1][2]}
                   //secik: rengin sahip oldupu karelerin rasgele birisinin koordinatlarını seçer
                   let secik=reng[Math.floor(Math.random()*reng.length)]
                   
-                  console.log(secik)
+                  
+                  console.log("rasgele sahip kare ",secik)
+                  console.log("tüm sahip kareler ",reng);
                   let koords = selmap().map
                   //console.log(koords)
+                  let morp = Math.round(Math.random())*2-1
+                  let xory = Math.round(Math.random()*1)
 
-                  if (((koords[secik[0]+1][secik[1]])&&(koords[secik[0]+1][secik[1]][1]!==true))||((koords[secik[0]-1][secik[1]])&&(koords[secik[0]-1][secik[1]][1]!==true))||((koords[secik[0]][secik[1]+1])&&(koords[secik[0]][secik[1]+1][1]!==true))||((koords[secik[0]][secik[1]-1])&&(koords[secik[0]][secik[1]-1][1]!==true))) {
-                    let morp = Math.round(Math.random())*2-1
-                    let xory = Math.round(Math.random()*1)
-                    if (xory==1) {
-                      if (lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+morp][secik[1]]&&lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+morp][secik[1]][1]==false) {
-                        lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+morp][secik[1]][1]==true
-                        lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][selmap().down.coloursq[sira]].push([secik[0]+morp,secik[1]])
-                        finish++
-                      }
-                    }else{
-                      if (lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp]&&lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp][1]==false) {
-                        lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp][1]==true
-                        lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][selmap().down.coloursq[sira]].push([secik[0],secik[1]+morp])
-                        finish++
-                      }
+                  let secikob={
+                    x:"none",
+                    y:"none",
+                    e:"none"
+                  }
+                  if (((0>secik[0]-1)||(0>secik[1]-1))||((selmap().down.zone.xmax-1<secik[0]+1)||(selmap().down.zone.ymax-1<secik[1]+1))) {
+                    if (0>secik[0]-1) {
+                      secikob.x="-"
+                      secikob.e=true
+                    }
+                    if (0>secik[1]-1) {
+                      secikob.y="-"
+                      secikob.e=true
+                    }
+                    if (selmap().down.zone.xmax-1<secik[0]+1) {
+                      secikob.x="over"
+                      secikob.e=true
+                    }
+                    if (selmap().down.zone.ymax-1<secik[1]+1) {
+                      secikob.y="over"
+                      secikob.e=true
                     }
                   }
+                  (morp>0&&secikob.x=="none")
+                  console.log(secikob);
+                  if (((koords[secik[0]+1]&&koords[secik[0]+1][secik[1]])&&(koords[secik[0]+1][secik[1]][1]!==true))||((koords[secik[0]-1]&&koords[secik[0]-1][secik[1]])&&(koords[secik[0]-1][secik[1]][1]!==true))||((koords[secik[0]]&&koords[secik[0]][secik[1]+1])&&(koords[secik[0]][secik[1]+1][1]!==true))||((koords[secik[0]][secik[1]-1]&&koords[secik[0]][secik[1]-1])&&(koords[secik[0]][secik[1]-1][1]!==true))) {
+                    
+                    if (xory==1  /*x bura */) {
+                      /* if (secikob.e==true&&secikob.x=="over") {
+                        
+                      } */
+                      if (koords[secik[0]+morp][secik[1]]) {
+                        if (koords[secik[0]+morp][secik[1]][1]==false) {
+                          lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]+morp][secik[1]][1]=true
+                          lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][selmap().down.coloursq[sira]].push([secik[0]+morp,secik[1],selmap().down.coloursq[sira]])
+                          finish++
+                        }
+                      }
+                    }else{
+                      if (lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp]) {
+                        if (lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp][1]==false) {
+                          lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp][1]=true
+                          lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][selmap().down.coloursq[sira]].push([secik[0],secik[1]+morp,selmap().down.coloursq[sira]])
+                          lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp]
+
+                          //sınırlist -
+                          //sınırdepo -
+                          //aldığın karenın sağ sol ön arka karelerinin herangi birinin sınırlarını kapattıysan o kareyi rengin sınır karelerinden çıkar ve haritada o karenin sınır işaretini kaldır  
+                          finish++ 
+                        }
+                      }
+                    }
+                  }//--
                 }
               }
               console.log(lobies[users[msg.author.id].lobiname].maps[args[2]]);
               console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].r);
               console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].g);
-              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-1]);
             }
-            function sec2(){
+            let sec2 = function sec2(){
               lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].r.forEach(e=>{
                 al(e[0],e[1],"red")
               })
@@ -437,10 +493,11 @@ ${ul[i][1][2]}
             }
             sec1()
             sec2()
-            let secili
+            //let secili
             attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
             ch.send("sa", attachment)
           break;
+          }
           default:
           ch.send(`use second argument => diskriminator [diskriminators]. Available diskriminators: [quadra,auto,randomize [number of devlet]]`)
           }
@@ -448,7 +505,7 @@ ${ul[i][1][2]}
         case "randomizer":
         
         break;
-        case "c":
+        case "c":{
         let code=""
         for(let i=2;i<args.length;i++){
           code+=args[i]+" "
@@ -464,7 +521,7 @@ ${JSON.stringify(eval(code))}
         \`\`\`${ee}\`\`\`
         `)
         break;
-        
+      }
         default:
         ch.send(ext.c)
       }

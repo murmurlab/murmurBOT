@@ -15,7 +15,7 @@ client.on("ready",()=>{
   //client.user.setActivity(`Ais`,{type:`LISTENING`})
   
   client.user.setPresence({ activity: { name: `
- murmur[      ;h      ]murmur╔╗╔══╦══╗
+ mur[;h]murmur╔╗╔══╦══╗
 ╔══╦╦╦╦╦══╦╦╦╦╣║║╔╗║╔╗║
 ║║║║║║╔╣║║║║║╔╣╚╣╠╣║╔╗║
 ╚╩╩╩═╩╝╚╩╩╩═╩╝╚═╩╝╚╩══╝
@@ -25,14 +25,14 @@ client.on("ready",()=>{
   
   console.log("ready!")
 })
-users={
+let users={
   "431079005941137418":{
     "oninloby":{"lobik":true},
     "lobi":1,
     "lobiname":"lobik"
       }
 }
-lobies={
+let lobies={
   "lobik":{
     "maps":{
       
@@ -45,10 +45,10 @@ lobies={
     "onlines":0
       }
 }
-function user (pusername,pzone){
+/* function user (pusername,pzone){
             this.username = pusername
             this.zone = pzone
-          }
+          } */
 
 
 client.on("message",(msg)=>{
@@ -130,7 +130,7 @@ function relogin(ch,acc){
   ch.send("relogining to "+acc)
   console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+config.tokens[acc].slice(config.tokens[acc].length/1.1))
   ch.send("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+config.tokens[acc].slice(config.tokens[acc].length/1.1))
-  .then(msg=>client.destroy())
+  .then(()=>client.destroy())
   .then(()=>client.login(config.tokens[acc]))
   .then(()=>ch.send(`logged in ${acc}`))
 }
