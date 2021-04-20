@@ -347,8 +347,12 @@ ${ul[i][1][2]}
           let b=[]
           //args[4] ün gereği kaç kişi oynuyacaksa okadar random seçmek için 
           for(let i=0,a;i<selmap().down.colours;i++){
-            a = [Math.floor(Math.random()*selmap().down.zone.xmax)+1,Math.floor(Math.random()*selmap().down.zone.ymax)+1]
-            
+            a = [Math.floor(Math.random()*selmap().down.zone.xmax),Math.floor(Math.random()*selmap().down.zone.ymax)]
+            if (b[0]) {
+              while (b.some(e=>e[0]==a[0]&&e[1]==a[1])) {
+                a = [Math.floor(Math.random()*selmap().down.zone.xmax),Math.floor(Math.random()*selmap().down.zone.ymax)]
+              }
+            }
             b.push(a)
             }
           console.log(b)
@@ -386,22 +390,32 @@ ${ul[i][1][2]}
       ctx.beginPath()
       ctx.font = ""+15+"px Arial";
       ctx.fillStyle = "black";
-      for(let y=0;y<selmap().map.length-2;y++){
+      for(let y=0;y<a;y++){
         ctx.fillText(y , cxxx-20 ,(y*blokxy)+20 );
       }
-      for(let x=0;x<selmap().map[0].length;x++){
+      for(let x=0;x<b;x++){
         ctx.fillText(x , x*blokxy ,cyyy );
       }
     }
-    ciz(selmap().map.length-2,selmap().map[0].length,blokxy)
+    ciz(selmap().down.zone.xmax,selmap().down.zone.ymax,blokxy)
     let attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
     ch.send("sa", attachment)
-            let al = function al(x,y,col){
-              let x1=x*20,y1=y*20
-              ctx.beginPath();
-              ctx.lineWidth = "7"
-              ctx.strokeStyle = col;
-              ctx.strokeRect(x1, y1, blokxy, blokxy);
+            let al = function al(x,y,col,fill){
+
+              if (fill) {
+                let x1=x*20,y1=y*20
+                ctx.beginPath();
+                //ctx.lineWidth = "7"
+                ctx.fillStyle = col;
+                ctx.fillRect(x1, y1, blokxy, blokxy);  
+              } else {
+                let x1=x*20,y1=y*20
+                ctx.beginPath();
+                ctx.lineWidth = "7"
+                ctx.strokeStyle = col;
+                ctx.strokeRect(x1, y1, blokxy, blokxy);  
+              }
+
             }
     
             al(3,3,"blue")
@@ -468,27 +482,36 @@ ${ul[i][1][2]}
                           lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp][1]=true
                           lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2][selmap().down.coloursq[sira]].push([secik[0],secik[1]+morp,selmap().down.coloursq[sira]])
                           lobies[users[msg.author.id].lobiname].maps[args[2]][secik[0]][secik[1]+morp]
-
+                          if (((selmap().map[secik[0]][secik[1]+morp+1]&&!selmap().map[secik[0]][secik[1]+morp+1][1])||!selmap().map[secik[0]][secik[1]+morp+1])||
+                              ((selmap().map[secik[0]][secik[1]+morp-1]&&!selmap().map[secik[0]][secik[1]+morp-1][1])||!selmap().map[secik[0]][secik[1]+morp-1])||
+                              ((selmap().map[secik[0]+1][secik[1]+morp]&&!selmap().map[secik[0]+1][secik[1]+morp][1])||!selmap().map[secik[0]+1][secik[1]+morp])||
+                              ((selmap().map[secik[0]-1][secik[1]+morp]&&!selmap().map[secik[0]-1][secik[1]+morp][1])||!selmap().map[secik[0]-1][secik[1]+morp])) {
+                                selmap().map[secik[0]][secik[1]+morp][2]=true
+                            }
                           //sınırlist -
                           //sınırdepo -
                           //aldığın karenın sağ sol ön arka karelerinin herangi birinin sınırlarını kapattıysan o kareyi rengin sınır karelerinden çıkar ve haritada o karenin sınır işaretini kaldır  
                           finish++ 
+                          
                         }
                       }
                     }
                   }//--
                 }
               }
-              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]]);
-              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].r);
-              console.log(lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].g);
+              console.log(selmap().map);
+/*               console.log(selmap().up.red);
+              console.log(selmap().up.green); */
             }
             let sec2 = function sec2(){
-              lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].r.forEach(e=>{
-                al(e[0],e[1],"red")
-              })
-              lobies[users[msg.author.id].lobiname].maps[args[2]][lobies[users[msg.author.id].lobiname].maps[args[2]].length-2].g.forEach(e=>{
-                al(e[0],e[1],"green")
+              Object.keys(selmap().down.coloursq).forEach(e=>{
+                selmap().up[selmap().down.coloursq[e]].forEach(a=>{
+                  al(a[0],a[1],selmap().down.coloursq[e],false)
+                })
+                //sınırları düşük ton renklemek
+                selmap().up["border"+selmap().down.coloursq[e]].forEach(a=>{
+                  al(a[0],a[1],selmap().down.coloursq[e],true)
+                })
               })
             }
             sec1()

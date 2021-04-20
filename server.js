@@ -1,4 +1,5 @@
 //sj
+
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const fs = require('fs')
@@ -51,8 +52,7 @@ let lobies={
           } */
 
 
-client.on("message",(msg)=>{
-  
+client.on("message",async(msg)=>{
   if(msg.channel.type=="dm"){
     if(msg.author.bot)return
       if(msg.author==dmme){
@@ -70,11 +70,27 @@ client.on("message",(msg)=>{
           .then(thisuser=>thisuser.send(args.slice(2).join(' '),atac))
           .catch(error=>dmme.send(`invalid user ||${error.toString()}||`))
           break;
+          case "share":{
+          if (!args[1]||!args[2])return dmme.send(`channel or message is missing`)
+          client.guilds.fetch()
+          let cl=client.guilds.cache.find(e=>{
+            return e.name==args[1]||e.id==args[1]
+          })
+        
+          let cha=cl.channels.cache.find((e)=>{return e.name==args[2] || e.id==args[2]})
+          cha.send(args.slice(3).join(" "))
+          
+          break;
+          }
           default:
           dmme.send("invalid command")
         }
         return
       }
+    var atac2
+    if (msg.attachments.size>0) {
+      atac2=msg.attachments.first()
+    }
     atan = msg.author
     mejas = msg.content
     console.log(mejas+" "+atan.id)
@@ -87,7 +103,10 @@ client.on("message",(msg)=>{
    .setThumbnail('https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048')
     .setFooter(atan.id, 'https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048'); 
 
-    dmme.send(msg.content,{embed:embeb})
+    dmme.send(msg.content,{
+      embed:embeb,
+      files:[atac2]
+    })
     
     return 
   }
@@ -100,6 +119,7 @@ client.on("message",(msg)=>{
   //msg.channel.send(args)
   const commands = fs.readdirSync('.\\dir1\\commands\\')
   const chk = fs.readdirSync('.\\dir1\\commands\\ch')
+  const dmk = fs.readdirSync('.\\dir1\\commands\\dm')
       console.log(commands,chk)
       console.log(command)
       const name = chk.find(n => n==command+'.js')
