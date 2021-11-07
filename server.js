@@ -6,45 +6,45 @@ const fs = require('fs')
 //const client = global.client = new Discord.Client({fetchAllMembers: true});
 const config = require("./config.json")
 //const ext = require("./ext.js")
-const {prefix} = require("./config.json")
+const { prefix } = require("./config.json")
 
-var atan,dmme,chch,mejas
-client.on("ready",()=>{
+var atan, dmme, chch, mejas
+client.on("ready", () => {
   setup()
   client.user.setStatus(`idle`)
-  
+  con
   //client.user.setActivity(`Ais`,{type:`LISTENING`})
-  
+
   client.user.setPresence({ activity: { name: `
  mur[;h]murmur╔╗╔══╦══╗
 ╔══╦╦╦╦╦══╦╦╦╦╣║║╔╗║╔╗║
 ║║║║║║╔╣║║║║║╔╣╚╣╠╣║╔╗║
 ╚╩╩╩═╩╝╚╩╩╩═╩╝╚═╩╝╚╩══╝
-  `, type:'STREAMING',}, status: 'idle' })
-  .then(console.log)
-  .catch(console.error);
-  
+  `, type: 'STREAMING', }, status: 'idle' })
+    .then(console.log)
+    .catch(console.error);
+
   console.log("ready!")
 })
-let users={
-  "431079005941137418":{
-    "oninloby":{"lobik":true},
-    "lobi":1,
-    "lobiname":"lobik"
-      }
+let users = {
+  "431079005941137418": {
+    "oninloby": { "lobik": true },
+    "lobi": 1,
+    "lobiname": "lobik"
+  }
 }
-let lobies={
-  "lobik":{
-    "maps":{
-      
+let lobies = {
+  "lobik": {
+    "maps": {
+
     },
-    "owner":"431079005941137418",
-    "members":{},
-    "numofmem":0,
-    "queue":{},
-    "queued":0,
-    "onlines":0
-      }
+    "owner": "431079005941137418",
+    "members": {},
+    "numofmem": 0,
+    "queue": {},
+    "queued": 0,
+    "onlines": 0
+  }
 }
 /* function user (pusername,pzone){
             this.username = pusername
@@ -52,112 +52,113 @@ let lobies={
           } */
 
 
-client.on("message",async(msg)=>{
-  if(msg.channel.type=="dm"){
-    if(msg.author.bot)return
-      if(msg.author==dmme){
-        if(!msg.content.startsWith(prefix))return
-        const command = msg.content.slice(prefix.length).split(" ").shift()
-        const args = msg.content.slice(prefix.length+command.length).split(" ")
-        switch(command){
-          case "reply":
-          if(!args[1]||!args[2])return dmme.send('id or message is missing')
+client.on("message", async (msg) => {
+  if (msg.channel.type == "dm") {
+    if (msg.author.bot) return
+    if (msg.author == dmme) {
+      if (!msg.content.startsWith(prefix)) return
+      const command = msg.content.slice(prefix.length).split(" ").shift()
+      const args = msg.content.slice(prefix.length + command.length).split(" ")
+      switch (command) {
+        case "reply":
+          if (!args[1] || !args[2]) return dmme.send('id or message is missing')
           var atac
-          if(msg.attachments.size>0){
-            atac=msg.attachments.first()
+          if (msg.attachments.size > 0) {
+            atac = msg.attachments.first()
           }
           client.users.fetch(args[1])
-          .then(thisuser=>thisuser.send(args.slice(2).join(' '),atac))
-          .catch(error=>dmme.send(`invalid user ||${error.toString()}||`))
+            .then(thisuser => thisuser.send(args.slice(2).join(' '), atac))
+            .catch(error => dmme.send(`invalid user ||${error.toString()}||`))
           break;
-          case "share":{
-          if (!args[1]||!args[2])return dmme.send(`channel or message is missing`)
+        case "share": {
+          if (!args[1] || !args[2]) return dmme.send(`channel or message is missing`)
           client.guilds.fetch()
-          let cl=client.guilds.cache.find(e=>{
-            return e.name==args[1]||e.id==args[1]
+          let cl = client.guilds.cache.find(e => {
+            return e.name == args[1] || e.id == args[1]
           })
-        
-          let cha=cl.channels.cache.find((e)=>{return e.name==args[2] || e.id==args[2]})
+
+          let cha = cl.channels.cache.find((e) => { return e.name == args[2] || e.id == args[2] })
           cha.send(args.slice(3).join(" "))
-          
+
           break;
-          }
-          default:
-          dmme.send("invalid command")
         }
-        return
+        default:
+          dmme.send("invalid command")
       }
+      return
+    }
     var atac2
-    if (msg.attachments.size>0) {
-      atac2=msg.attachments.first()
+    if (msg.attachments.size > 0) {
+      atac2 = msg.attachments.first()
     }
     atan = msg.author
     mejas = msg.content
-    console.log(mejas+" "+atan.id)
+    console.log(mejas + " " + atan.id)
     let embeb = new Discord.MessageEmbed()
-   .setColor('#0099ff')
-   .setTitle('murmurbot help')
-   .setURL('https://disboard.org/tr/server/692070157572636733')
-   .setAuthor('murmurbot', 'https://cdn.discordapp.com/avatars/707222049755496458/56b98273b152972a9302688cf8868c69.png?size=2048', 'https://instagram.com/murmurmanx')
-   .setDescription(atan.toString())
-   .setThumbnail('https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048')
-    .setFooter(atan.id, 'https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048'); 
+      .setColor('#0099ff')
+      .setTitle('murmurbot help')
+      .setURL('https://disboard.org/tr/server/692070157572636733')
+      .setAuthor('murmurbot', 'https://cdn.discordapp.com/avatars/707222049755496458/56b98273b152972a9302688cf8868c69.png?size=2048', 'https://instagram.com/murmurmanx')
+      .setDescription(atan.toString())
+      .setThumbnail('https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048')
+      .setFooter(atan.id, 'https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048');
 
-    dmme.send(msg.content,{
-      embed:embeb,
-      files:[atac2]
+    dmme.send(msg.content, {
+      embed: embeb,
+      files: [atac2]
     })
-    
-    return 
+
+    return
   }
-  if(msg.author.bot)return
-  if(!msg.content.startsWith(prefix))return
+  if (msg.author.bot) return
+  if (!msg.content.startsWith(prefix)) return
   const command = msg.content.slice(prefix.length).split(" ").shift()
-  const args = msg.content.slice(prefix.length+command.length).split(" ")
+  const args = msg.content.slice(prefix.length + command.length).split(" ")
   const ch = msg.channel
   //msg.channel.send(command)
   //msg.channel.send(args)
-  const commands = fs.readdirSync('.\\dir1\\commands\\')
-  const chk = fs.readdirSync('.\\dir1\\commands\\ch')
-  const dmk = fs.readdirSync('.\\dir1\\commands\\dm')
-      console.log(commands,chk)
-      console.log(command)
-      const name = chk.find(n => n==command+'.js')
-      if(name){
-        const cmd = require(`.\\dir1\\commands\\ch\\${name}`)
-        if(!cmd.execute)return ch.send('empty command file')
-        cmd.execute(ch,msg,args,users,lobies,Discord,client,relogin,dmme,chch)
-      }else{
-        const e = new Discord.MessageEmbed()
-        .setColor('#ffff00')
-   .setTitle('murmurbot help')
-   .setURL('https://disboard.org/tr/server/692070157572636733')
-   .setAuthor('murmurbot', 'https://cdn.discordapp.com/avatars/707222049755496458/56b98273b152972a9302688cf8868c69.png?size=2048', 'https://instagram.com/murmurmanx')
-   .setDescription(msg.author.toString()+"  ;h")
-   .setThumbnail('https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048')
-    .setFooter("powered by murmurLAB", 'https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048'); 
-        
-        ch.send({embed:e})
-      }
+  const commands = fs.readdirSync('./dir1/commands/')
+  const chk = fs.readdirSync('./dir1/commands/ch')
+  const dmk = fs.readdirSync('./dir1/commands/dm')
+  console.log(commands, chk)
+  console.log(command)
+  const name = chk.find(n => n == command + '.js')
+  if (name) {
+    const cmd = require(`./dir1/commands/ch/${name}`)
+    if (!cmd.execute) return ch.send('empty command file')
+    cmd.execute(ch, msg, args, users, lobies, Discord, client, relogin, dmme, chch)
+  } else {
+    const e = new Discord.MessageEmbed()
+      .setColor('#ffff00')
+      .setTitle('murmurbot help')
+      .setURL('https://disboard.org/tr/server/692070157572636733')
+      .setAuthor('murmurbot', 'https://cdn.discordapp.com/avatars/707222049755496458/56b98273b152972a9302688cf8868c69.png?size=2048', 'https://instagram.com/murmurmanx')
+      .setDescription(msg.author.toString() + "  ;h")
+      .setThumbnail('https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048')
+      .setFooter("powered by murmurLAB", 'https://cdn.discordapp.com/avatars/431079005941137418/bf21251b3fd7a7236cac55af470e5a8f.png?size=2048');
+
+    ch.send({ embed: e })
+  }
 })
 
-function relogin(ch,acc){
-  if(config.tokens[acc]===undefined){
+function relogin(ch, acc) {
+  if (config.tokens[acc] === undefined) {
     console.log(config.tokens[acc])
     ch.send("böyle bir token yok")
     return
   }
-  ch.send("relogining to "+acc)
-  console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+config.tokens[acc].slice(config.tokens[acc].length/1.1))
-  ch.send("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+config.tokens[acc].slice(config.tokens[acc].length/1.1))
-  .then(()=>client.destroy())
-  .then(()=>client.login(config.tokens[acc]))
-  .then(()=>ch.send(`logged in ${acc}`))
+  ch.send("relogining to " + acc)
+  console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" + config.tokens[acc].slice(config.tokens[acc].length / 1.1))
+  ch.send("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" + config.tokens[acc].slice(config.tokens[acc].length / 1.1))
+    .then(() => client.destroy())
+    .then(() => client.login(config.tokens[acc]))
+    .then(() => ch.send(`logged in ${acc}`))
 }
-function setup (){
 
-client.users.fetch('431079005941137418').then((thisuser)=>dmme=thisuser)
-chch = client.channels.cache.get('692070158281212019')  
+function setup() {
+
+  client.users.fetch('431079005941137418').then((thisuser) => dmme = thisuser)
+  chch = client.channels.cache.get('692070158281212019')
 }
 
 client.login(config.tokens.lokums)
