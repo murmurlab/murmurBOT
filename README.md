@@ -1,4 +1,3 @@
 # murmurBOT
 Bot for Discord
-sjsjsjsj
-saasd
+anlatılacak bişe yok api işte
